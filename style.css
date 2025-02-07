@@ -1,0 +1,33 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+body {
+    font-size: 2vw;
+    background-color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: rgb(169, 169, 169, 0.5);
+}
+
+.submission {
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    /*justify-content: space-between;*/
+}
+
+.logo {
+    width: 5vw;
+    height: 5vw;
+}
