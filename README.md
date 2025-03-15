@@ -1,6 +1,6 @@
 ## About The Project
 
-[![Entity Relationship Diagram][erd-screenshot]](images/erd.png)
+![Entity Relationship Diagram](images/erd.png)
 
 This project is a simple social media app designed to function similiarly to social media sites such as Twitter/X and Bluesky.
 
