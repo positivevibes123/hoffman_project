@@ -19,6 +19,11 @@
 *_LOCAL_*.txt
 *_REMOTE_*.txt
 
+### dotenv ###
+.env
+
+# End of https://www.toptal.com/developers/gitignore/api/dotenv
+
 ### Node ###
 # Logs
 logs
