@@ -3,6 +3,10 @@
     color: white;
 }
 
+input {
+    color: black;
+}
+
 body {
     font-size: 2vw;
     background-color: black;
