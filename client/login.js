@@ -1,3 +1,5 @@
+import {registerUser} from "../server/models/user.js"
+
 const form = document.getElementById("form")
 form.addEventListener("submit", onSubmit)
 
@@ -12,16 +14,11 @@ function onSubmit(event) {
     if (validString(username)) {
         errorSection.innerText = "Username cannot be blank!"
     } else {
+        // Swap this out for checking for a user in the future
+        registerUser(username, password)
+        
         errorSection.innerText = ""
-        console.log(username)
     }
-
-    const user = {
-        username: username,
-        password: password
-    };
-
-    console.log("User registered:", user);
 }
 
 function validString(word) {
