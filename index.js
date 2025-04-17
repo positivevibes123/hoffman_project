@@ -4,6 +4,8 @@ const app = express()
 app.use(express.json())
 
 const userRoutes = require("./server/routes/user")
+const userPostRoutes = require("./server/routes/userpost")
+const profileRoutes = require("./server/routes/profile")
 // const recipeRoutes = require("./server/routes/recipe")
 
 //CORS middleware
@@ -15,6 +17,8 @@ app.use(function(req, res, next) {
 });
 
 app.use("/users", userRoutes)
+app.use("/userpost", userPostRoutes)
+app.use("/profile", profileRoutes)
 // app.use("/recipe", recipeRoutes)
 
 const PORT = process.env.PORT || 3000
