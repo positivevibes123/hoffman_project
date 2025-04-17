@@ -1,16 +1,37 @@
-const users = []
+const con = require("./db_connect");
 
-class User {
-  constructor(username, password) {
-    this.username = username
-    this.password = password
-  }
+async function createTable() {
+  const sql = `CREATE TABLE IF NOT EXISTS User (
+  UserID INT AUTO_INCREMENT PRIMARY KEY,
+	Username VARCHAR(255) NOT NULL UNIQUE,
+	Password varchar(255) NOT NULL
+ );`
+ await con.query(sql)
+}
+createTable()
+
+// CRUD Operations
+async function getAllUsers() {
+  let sql = `SELECT * FROM User`
+  return await con.query(sql)
 }
 
-// Very simple registration function. Later implement username checking...
-export function registerUser(username, password) {
-    const newUser = new User(username, password)
-    users.push(newUser)
-    console.log("User registered:", newUser)
-    return newUser
+async function login(user) {
+  let cUser = await userExists(user.Username)
+  if(!cUser[0]) throw Error("Username does not exist!") 
+    if(cUser[0].password != user.Password) throw Error("Password is incorrect!")
+      
+    return cUser[0]
 }
+
+async function userExists(username) {
+  let sql = `
+    SELECT * FROM User
+    WHERE Username="${username}"
+  `
+  return await con.query(sql)
+}
+
+// CREATE in CRUD - Registering a user
+
+module.exports = { getAllUsers, login }

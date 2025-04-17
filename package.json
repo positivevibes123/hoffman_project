@@ -1,0 +1,28 @@
+{
+  "name": "hoffman_project",
+  "version": "1.0.0",
+  "description": "![Entity Relationship Diagram](erd.png)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/positivevibes123/hoffman_project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/positivevibes123/hoffman_project/issues"
+  },
+  "homepage": "https://github.com/positivevibes123/hoffman_project#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
