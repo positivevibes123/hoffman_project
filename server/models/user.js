@@ -24,6 +24,16 @@ async function login(user) {
     return cUser[0]
 }
 
+async function signUp(user) {
+  let cUser = await userExists(user.username)
+  if(cUser[0]) throw Error("Username already exists!")
+  let sql = `
+    INSERT INTO User (Username, Password)
+    VALUES ("${user.username}", "${user.password}")
+  `
+  return await con.query(sql)
+}
+
 async function userExists(username) {
   let sql = `
     SELECT * FROM User
@@ -34,4 +44,4 @@ async function userExists(username) {
 
 // CREATE in CRUD - Registering a user
 
-module.exports = { getAllUsers, login }
+module.exports = { getAllUsers, login, signUp }

@@ -1,26 +1,25 @@
-import {registerUser} from "../server/models/user.js"
+import { fetchData } from "./fetch.js"
 
 const form = document.getElementById("form")
 form.addEventListener("submit", onSubmit)
 
+// Attempt to login with the inputted credentials
 function onSubmit(event) {
     event.preventDefault(); // Prevent the default form submission
 
-    let errorSection = document.getElementById("error")
-
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    if (validString(username)) {
-        errorSection.innerText = "Username cannot be blank!"
-    } else {
-        // Swap this out for checking for a user in the future
-        registerUser(username, password)
-        
-        errorSection.innerText = ""
+    let user = {
+        username: document.getElementById("username").value,
+        password: document.getElementById("password").value
     }
-}
 
-function validString(word) {
-    return word == ""
-  }
+    fetchData("/users/login", user, "POST")
+    .then((data) => {
+        if (!data.message) {
+            window.location.href = "index.html"
+        }
+    })
+    .catch((err) => {
+        let errorSection = document.getElementById("error")
+        errorSection.innerText = err.message
+    })
+}
