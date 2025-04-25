@@ -13,6 +13,15 @@ router
     }
   })
 
+  .post("/getProfile", async (req, res) => {
+    try {
+      const profile = await Profile.getProfile(req.body);
+      res.send(profile);
+    } catch (err) {
+      res.status(401).send({ message: err.message });
+    }
+  })
+
   .post("/createProfile", async (req, res) => {
     try {
       const profile = await Profile.createProfile(req.body);

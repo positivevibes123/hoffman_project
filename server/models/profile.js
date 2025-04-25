@@ -26,8 +26,8 @@ async function createProfile(profile) {
 }
 
 async function getProfile(userId) {
-	let sql = `SELECT * FROM Profile WHERE UserID=${userId}`
-	return await con.query(sql)
+	let sql = `SELECT * FROM Profile WHERE UserID=?`
+	return await con.query(sql, [userId.UserID])
 }
 
-module.exports = { getAllProfiles, createProfile }
+module.exports = { getAllProfiles, createProfile, getProfile }

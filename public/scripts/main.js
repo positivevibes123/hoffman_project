@@ -88,6 +88,18 @@ function register(event) {
     });
 }
 
+export function getProfile(userId) {
+    fetchData("/profile/getProfile", { UserID: userId }, "POST")
+        .then((data) => {
+            if (!data.message) {
+                return data[0]
+            }
+        })
+        .catch((err) => {
+            console.log(err.message)
+        })
+}
+
 function stringEmpty(word) {
     return word.length == 0
 }
