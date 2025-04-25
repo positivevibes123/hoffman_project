@@ -13,9 +13,9 @@ router
     }
   })
 
-  .post("/getProfile", async (req, res) => {
+  .get("/getProfile", async (req, res) => {
     try {
-      const profile = await Profile.getProfile(req.body);
+      const profile = await Profile.getProfile(req.query.userId);
       res.send(profile);
     } catch (err) {
       res.status(401).send({ message: err.message });

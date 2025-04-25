@@ -1,11 +1,12 @@
 import {getProfile} from "./main.js"
 
-window.onload = function() {
-    let currentUserID = localStorage.getItem("user")
-    console.log("Current user ID: " + currentUserID)
-    let bioText = getProfile(currentUserID)
+window.onload = async function() {  
+    try {
+        let profile = await getProfile(currentUserID)
+        console.log(profile)
 
-    console.log(bioText)
-
-    document.getElementById("bio").innerHTML = bioText
+        document.getElementById("bio").innerHTML = profile
+    } catch (err) {
+        console.log(err.message)
+    }
 }

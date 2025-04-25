@@ -1,11 +1,17 @@
 export async function fetchData(route = '', data={}, methodType) {
-    const response = await fetch(`http://localhost:3000${route}`, {
+    const url = `http://localhost:3000${route}`
+    const options = {
         method: methodType,
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
-    })
+    }
+
+    if (methodType == 'POST') {
+        options.body = JSON.stringify(data)
+    }
+    
+    const response = await fetch(url, options)
     if (response.ok) {
         return await response.json()
     } else {
@@ -88,10 +94,11 @@ function register(event) {
     });
 }
 
-export function getProfile(userId) {
-    fetchData("/profile/getProfile", { UserID: userId }, "POST")
+export async function getProfile(userId) {
+    await fetchData(`/profile/getProfile?userId=${userId}`, "GET")
         .then((data) => {
             if (!data.message) {
+                console.log(data[0])
                 return data[0]
             }
         })
