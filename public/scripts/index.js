@@ -27,6 +27,7 @@ window.onload = async function() {
         let profile = await getProfile(currentUserID)
 
         document.getElementById("bio").innerHTML = profile.Bio
+        document.getElementById("joinDate").innerHTML = "Join Date: " + profile.JoinDate.split("T")[0];  
     } catch (err) {
         console.log(err.message)
     }
