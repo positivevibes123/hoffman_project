@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/style.css">
-    <script src="scripts/main.js" type="module"></script>
     <script src="scripts/index.js" type="module"></script>
 </head>
 <body>
@@ -14,8 +13,18 @@
         <a href="register.html">Log Out</a>
     </nav>
 
-    <div class="biosection">
-        <p id="bio"></p>
+    <div class="bioDiv">
+        <div class="formDiv" id="formDiv">
+            <form id="bioForm">
+                <input type="text">Enter Bio:</input>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        
+        <div class="bioBox">
+            <p class="bio" id="bio"></p>
+        </div>
+        <button id="editBio">Edit Bio</button>
     </div>
 </body>
 </html>

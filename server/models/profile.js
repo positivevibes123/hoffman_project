@@ -30,4 +30,9 @@ async function getProfile(userId) {
 	return await con.query(sql, [userId])
 }
 
-module.exports = { getAllProfiles, createProfile, getProfile }
+async function updateProfile(profile) {
+	let sql = `UPDATE Profile SET Bio=? WHERE UserID=?`
+	return await con.query(sql, [profile.Bio, profile.UserID])
+}
+
+module.exports = { getAllProfiles, createProfile, getProfile, updateProfile }

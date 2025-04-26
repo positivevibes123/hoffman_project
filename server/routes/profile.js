@@ -29,6 +29,15 @@ router
     } catch (err) {
       res.status(401).send({ message: err.message });
     }
-  });
+  })
+
+  .post("/updateProfile", async (req, res) => {
+    try {
+      const profile = await Profile.updateProfile(req.body);
+      res.send(profile);
+    } catch (err) {
+      res.status(401).send({ message: err.message });
+    }
+  })
 
 module.exports = router;

@@ -91,20 +91,19 @@ function register(event) {
     })
     .catch((err) => {
       console.log(err.message)
-    });
+    })
 }
 
 export async function getProfile(userId) {
-    await fetchData(`/profile/getProfile?userId=${userId}`, "GET")
-        .then((data) => {
-            if (!data.message) {
-                console.log(data[0])
-                return data[0]
-            }
-        })
-        .catch((err) => {
-            console.log(err.message)
-        })
+    try {
+        const data = await fetchData(`/profile/getProfile?userId=${userId}`, "GET");
+        if (!data.message) {
+            return data[0]
+        }
+    } catch (err) {
+        console.log(err.message)
+        throw err
+    }
 }
 
 function stringEmpty(word) {
