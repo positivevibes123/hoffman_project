@@ -1,4 +1,4 @@
-import {getProfile} from "./main.js"
+import {getProfile, updateProfile} from "./main.js"
 
 document.getElementById("editBio").onclick = function() {
     let form = document.getElementById("formDiv")
@@ -11,8 +11,10 @@ document.getElementById("bioForm").onsubmit = function(event) {
 
     let profile = {
         UserID: localStorage.getItem("user"),
-        Bio: ''
+        Bio: document.getElementById("bioInput").value
     }
+
+    updateProfile(profile)
 
     console.log("Form submitted")
 }

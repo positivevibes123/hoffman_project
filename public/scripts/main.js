@@ -7,7 +7,7 @@ export async function fetchData(route = '', data={}, methodType) {
         },
     }
 
-    if (methodType == 'POST') {
+    if (methodType == 'POST' || methodType == 'PUT') {
         options.body = JSON.stringify(data)
     }
     
@@ -104,6 +104,19 @@ export async function getProfile(userId) {
         console.log(err.message)
         throw err
     }
+}
+
+export function updateProfile(profile) {
+    fetchData("/profile/updateProfile", profile, "PUT")
+    .then((data) => {
+        if (!data.message) {
+            console.log(data)
+            console.log("Profile updated successfully")
+        }
+    })
+    .catch((err) => {
+        console.log(err.message)
+    })
 }
 
 function stringEmpty(word) {

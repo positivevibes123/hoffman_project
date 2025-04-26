@@ -31,8 +31,9 @@ router
     }
   })
 
-  .post("/updateProfile", async (req, res) => {
+  .put("/updateProfile", async (req, res) => {
     try {
+      console.log(req.body)
       const profile = await Profile.updateProfile(req.body);
       res.send(profile);
     } catch (err) {
