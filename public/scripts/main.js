@@ -39,7 +39,7 @@ function login(event) {
         errorSection.innerText = ""
     }
 
-    fetchData("/users/login", user, "POST")
+    fetchData("/user/login", user, "POST")
     .then((data) => {
         if (!data.message) {
             window.location.href = "index.html"

@@ -17,7 +17,7 @@ async function getAllUsers() {
 }
 
 async function login(user) {
-  let cUser = await userExists(user.Username)
+  let cUser = await userExists(user.username)
   if(!cUser[0]) throw Error("Username does not exist!") 
     if(cUser[0].password != user.Password) throw Error("Password is incorrect!")
       
