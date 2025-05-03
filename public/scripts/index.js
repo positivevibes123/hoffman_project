@@ -1,8 +1,13 @@
-import {getProfile, updateProfile} from "./main.js"
+import {getProfile, updateProfile, createPost, getUserPosts} from "./main.js"
 
 document.getElementById("editBio").onclick = function() {
-    let form = document.getElementById("formDiv")
-    form.style.display = "block"
+    let bioForm = document.getElementById("bioFormDiv")
+    bioForm.style.display = "block"
+}
+
+document.getElementById("editPost").onclick = function() {
+    let postForm = document.getElementById("postFormDiv")
+    postForm.style.display = "block"
 }
 
 // Update profile
@@ -19,6 +24,19 @@ document.getElementById("bioForm").onsubmit = function(event) {
     console.log("Form submitted")
 }
 
+document.getElementById("postForm").onsubmit = function(event) {
+    event.preventDefault()
+
+    let post = {
+        UserID: localStorage.getItem("user"),
+        Post: document.getElementById("postInput").value
+    }
+
+    createPost(post)
+
+    console.log("Post submitted")
+}
+
 window.onload = async function() {
     let currentUserID = localStorage.getItem("user")
     console.log("Current user ID: " + currentUserID)
@@ -31,4 +49,6 @@ window.onload = async function() {
     } catch (err) {
         console.log(err.message)
     }
+
+    getUserPosts(localStorage.getItem("user"))
 }

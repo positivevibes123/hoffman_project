@@ -4,7 +4,7 @@ const router = express.Router()
 
 router
 
-.get('/getUserPosts', async (req, res) => {
+.get('/', async (req, res) => {
     try {
       const userPosts = await UserPost.getAllPosts()
       res.send(userPosts)
@@ -12,5 +12,24 @@ router
       res.status(401).send({message: err.message})
     }
   })
+
+  .get('/:id', async (req, res) => {
+    try {
+      const userPost = await UserPost.getUserPosts(req.params.id)
+      res.send(userPost)
+    } catch(err) {
+      res.status(401).send({message: err.message})
+    }
+  })
+
+.post('/createPost', async (req, res) => {
+    try {
+      const userPost = await UserPost.createPost(req.body)
+      res.send(userPost)
+    } catch(err) {
+      res.status(401).send({message: err.message})
+    }
+})
+
 
   module.exports = router

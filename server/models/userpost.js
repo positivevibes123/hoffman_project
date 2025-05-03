@@ -19,4 +19,14 @@ async function getAllPosts() {
   return await con.query(sql)
 }
 
-module.exports = { getAllPosts }
+async function createPost(post) {
+  let sql = `INSERT INTO UserPost (UserID, Content) VALUES (?, ?)`
+  return await con.query(sql, [post.UserID, post.Content])
+}
+
+async function getUserPosts(userId) {
+  let sql = `SELECT * FROM UserPost WHERE UserID=?`
+  return await con.query(sql, [userId])
+}
+
+module.exports = { getAllPosts, createPost, getUserPosts }

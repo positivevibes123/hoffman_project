@@ -42,6 +42,7 @@ function login(event) {
     fetchData("/user/login", user, "POST")
     .then((data) => {
         if (!data.message) {
+            setCurrentUser(data.insertId)
             window.location.href = "index.html"
         }
     })
@@ -115,6 +116,36 @@ export function updateProfile(profile) {
         }
     })
     .catch((err) => {
+        console.log(err.message)
+    })
+}
+
+export function createPost(post) {
+    fetchData("/userpost/createPost", post, "POST")
+    .then((data) => {
+        if (!data.message) {
+            console.log(data)
+            console.log("Post created successfully")
+        }
+    })
+    .catch((err) => {
+        console.log(err.message)
+    })
+}
+
+export function getUserPosts(userid) {
+    fetchData(`/userpost/${userid}`, "GET").then((data) => {
+        if (!data.message) {
+            console.log(data)
+            console.log("Posts fetched successfully")
+
+            if (data.length == 0) {
+                console.log("No posts found")
+            } else {
+                // Loop through the posts and display them
+            }
+        }
+    }).catch((err) => {
         console.log(err.message)
     })
 }
