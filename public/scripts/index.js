@@ -61,6 +61,7 @@ window.onload = async function() {
         userposts.forEach(function(post) {
             result += `<li>
                 ${post.Content}
+                ${post.DateCreated.split("T")[0]}
                 <button class="delete-btn" data-postid="${post.PostID}">Delete</button>
             </li>`
         })

@@ -3,39 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="styles/style.css">
     <script src="scripts/index.js" type="module"></script>
 </head>
-<body>
-    <nav>
-        <img class="logo" src="images/logo.jpg" alt="logo">
-        <a href="register.html" id="register">Log Out</a>
+<body class="bg-gray-900 min-h-screen">
+    <nav class="bg-gray-800 p-4 flex justify-between items-center shadow-lg">
+        <img class="w-12 h-12 rounded-full" src="images/logo.jpg" alt="logo">
+        <a href="register.html" id="register" class="text-white hover:bg-gray-700 px-4 py-2 rounded-lg transition duration-200">Log Out</a>
     </nav>
 
-    <div class="bioDiv">
-        <h2 id="joinDate">Join Date: </h2>
-        <button id="editBio">Edit Bio</button>
-        <div class="bioFormDiv" id="bioFormDiv">
-            <form id="bioForm">
-                <input type="text" id="bioInput">Enter Bio:</input>
-                <input type="submit" value="Submit">
-            </form>
-        </div>
+    <div class="max-w-4xl mx-auto px-4 py-8 space-y-6">
+        <h2 id="joinDate" class="text-gray-200 text-xl mb-4">Join Date: </h2>
         
-        <div class="bioBox">
-            <p class="bio" id="bio"></p>
-        </div>
+        <div class="space-y-6">
+            <button id="editBio" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition duration-200">Edit Bio</button>
+            
+            <div class="bioFormDiv bg-gray-800 rounded-lg p-6" id="bioFormDiv">
+                <form id="bioForm" class="space-y-4">
+                    <div>
+                        <label for="bioInput" class="block text-gray-300 mb-2">Enter Bio:</label>
+                        <input type="text" id="bioInput" class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <input type="submit" value="Submit" class="w-full bg-primary hover:bg-green-600 text-white py-2 rounded-lg cursor-pointer transition duration-200">
+                </form>
+            </div>
+            
+            <div class="bioBox bg-gray-800 rounded-lg p-6">
+                <p class="bio text-gray-200" id="bio"></p>
+            </div>
 
-        <p>Click <button id="editPost">Here</button> to make a post! </p>
+            <div class="text-center">
+                <p class="text-gray-200 mb-2">Want to share something?</p>
+                <button id="editPost" class="bg-primary hover:bg-green-600 text-white px-6 py-2 rounded-lg transition duration-200">Create Post</button>
+            </div>
 
-        <div class="postFormDiv" id="postFormDiv">
-            <form id="postForm">
-                <input type="text" id="postInput">Enter Post:</input>
-                <input type="submit" value="Submit">
-        </div>
+            <div class="postFormDiv bg-gray-800 rounded-lg p-6" id="postFormDiv">
+                <form id="postForm" class="space-y-4">
+                    <div>
+                        <label for="postInput" class="block text-gray-300 mb-2">Enter Post:</label>
+                        <input type="text" id="postInput" class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <input type="submit" value="Submit" class="w-full bg-primary hover:bg-green-600 text-white py-2 rounded-lg cursor-pointer transition duration-200">
+                </form>
+            </div>
 
-        <ol class="postList" id="postList"></ol>
+            <ol class="postList space-y-4" id="postList"></ol>
     </div>
 </body>
 </html>

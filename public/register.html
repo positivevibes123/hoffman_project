@@ -4,28 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="styles/style.css">
     <script src="scripts/main.js" type="module" defer></script>
 </head>
-<body>
-    <nav>
-        <img class="logo" src="images/logo.jpg" alt="logo">
-        <a href="login.html">Login</a>
+<body class="bg-gray-900 min-h-screen">
+    <nav class="bg-gray-800 p-4 flex justify-between items-center shadow-lg">
+        <img class="w-12 h-12 rounded-full" src="images/logo.jpg" alt="logo">
+        <a href="login.html" class="text-white hover:bg-gray-700 px-4 py-2 rounded-lg transition duration-200">Login</a>
     </nav>
 
-    <div class="submission">
-        <h2>Register</h2>
+    <div class="max-w-md mx-auto mt-16 px-4">
+        <div class="bg-gray-800 rounded-lg p-8 shadow-xl">
+            <h2 class="text-2xl text-gray-200 font-semibold text-center mb-6">Register</h2>
 
-        <form id="registerForm">
-            <p id="error"></p>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username">
+            <form id="registerForm" class="space-y-6">
+                <p id="error" class="text-red-500 text-center"></p>
+                
+                <div>
+                    <label for="username" class="block text-gray-300 mb-2">Username:</label>
+                    <input type="text" id="username" name="username" 
+                           class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password">
+                <div>
+                    <label for="password" class="block text-gray-300 mb-2">Password:</label>
+                    <input type="password" id="password" name="password"
+                           class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
 
-            <input type="submit" value="Submit">
-        </form>
+                <input type="submit" value="Register" 
+                       class="w-full bg-primary hover:bg-green-600 text-white py-3 rounded-lg cursor-pointer transition duration-200">
+            </form>
+        </div>
     </div>
 </body>
 </html>

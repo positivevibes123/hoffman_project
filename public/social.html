@@ -4,23 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fritter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="styles/style.css">
 </head>
-<body>
-    <nav>
-        <img class="logo" src="images/logo.jpg" alt="logo">
-        <a href="login.html">Sign Out</a>
+<body class="bg-gray-900 min-h-screen">
+    <nav class="bg-gray-800 p-4 flex justify-between items-center shadow-lg">
+        <img class="w-12 h-12 rounded-full" src="images/logo.jpg" alt="logo">
+        <a href="login.html" class="text-white hover:bg-gray-700 px-4 py-2 rounded-lg transition duration-200">Sign Out</a>
     </nav>
 
-    <div class="submission">
-        <h2>Fritter</h2>
+    <div class="max-w-2xl mx-auto mt-16 px-4">
+        <div class="bg-gray-800 rounded-lg p-8 shadow-xl">
+            <h2 class="text-2xl text-gray-200 font-semibold text-center mb-6">Fritter</h2>
 
-        <form>
-            <label for="text">Text:</label>
-            <input type="text" id="text" name="text">
+            <form class="space-y-6">
+                <div>
+                    <label for="text" class="block text-gray-300 mb-2">What's on your mind?</label>
+                    <input type="text" id="text" name="text" 
+                           class="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
 
-            <input type="submit" value="Submit">
-        </form>
+                <input type="submit" value="Post" 
+                       class="w-full bg-primary hover:bg-green-600 text-white py-3 rounded-lg cursor-pointer transition duration-200">
+            </form>
+        </div>
     </div>
 </body>
 </html>
