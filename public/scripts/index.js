@@ -59,10 +59,18 @@ window.onload = async function() {
     if (userposts && userposts.length > 0) {
         let result = ""
         userposts.forEach(function(post) {
-            result += `<li>
-                ${post.Content}
-                ${post.DateCreated.split("T")[0]}
-                <button class="delete-btn" data-postid="${post.PostID}">Delete</button>
+            result += `<li class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-750 transition-all duration-200">
+                <div class="space-y-4">
+                    <div class="text-white text-lg">${post.Content}</div>
+                    <div class="text-gray-400 text-sm">Posted on ${new Date(post.DateCreated).toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    })}</div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-gray-700 flex justify-end">
+                    <button class="delete-btn" data-postid="${post.PostID}">Delete Post</button>
+                </div>
             </li>`
         })
         document.getElementById("postList").innerHTML = result
@@ -77,9 +85,18 @@ window.onload = async function() {
                 if (updatedPosts && updatedPosts.length > 0) {
                     let newResult = ""
                     updatedPosts.forEach(function(post) {
-                        newResult += `<li>
-                            ${post.Content}
-                            <button class="delete-btn" data-postid="${post.PostID}">Delete</button>
+                        newResult += `<li class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-750 transition-all duration-200">
+                            <div class="space-y-4">
+                                <div class="text-white text-lg">${post.Content}</div>
+                                <div class="text-gray-400 text-sm">Posted on ${new Date(post.DateCreated).toLocaleDateString('en-US', { 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric' 
+                                })}</div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-700 flex justify-end">
+                                <button class="delete-btn" data-postid="${post.PostID}">Delete Post</button>
+                            </div>
                         </li>`
                     })
                     document.getElementById("postList").innerHTML = newResult

@@ -61,7 +61,21 @@
                 </form>
             </div>
 
-            <ol class="postList space-y-4" id="postList"></ol>
+            <div class="space-y-6">
+                <ol class="postList divide-y divide-gray-700" id="postList">
+                    <!-- Posts will be dynamically added here with the following structure:
+                    <li class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-750 transition-all duration-200">
+                        <div class="space-y-4">
+                            <div class="text-white text-lg">[Post Text]</div>
+                            <div class="text-gray-400 text-sm">Posted on [Date]</div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-700 flex justify-end">
+                            <button class="delete-btn">Delete Post</button>
+                        </div>
+                    </li>
+                    -->
+                </ol>
+            </div>
     </div>
 </body>
 </html>

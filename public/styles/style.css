@@ -1,14 +1,10 @@
-/* Only keep styles for dynamic elements and those that can't be handled with Tailwind */
+/* Only keep styles for dynamic elements */
 .bioFormDiv,
 .postFormDiv {
     display: none;
 }
 
+/* Delete button styling */
 .delete-btn {
-    @apply bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-200;
-}
-
-/* Style for post items */
-.postList li {
-    @apply bg-gray-800 p-4 rounded-lg flex justify-between items-center shadow-md;
+    @apply bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all duration-200;
 }
