@@ -29,7 +29,7 @@ document.getElementById("postForm").onsubmit = function(event) {
 
     let post = {
         UserID: localStorage.getItem("user"),
-        Post: document.getElementById("postInput").value
+        Content: document.getElementById("postInput").value
     }
 
     createPost(post)
