@@ -132,6 +132,18 @@ export function createPost(post) {
     })
 }
 
+export async function deletePost(postId) {
+    try {
+        const data = await fetchData(`/userpost/deletePost/${postId}`, {}, "DELETE");
+        if (!data.message) {
+            console.log("Post deleted successfully");
+            return data;
+        }
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
 export async function getUserPosts(userid) {
     try {
         const data = await fetchData(`/userpost/${userid}`, {}, "GET");

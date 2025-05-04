@@ -1,4 +1,4 @@
-import {getProfile, updateProfile, createPost, getUserPosts} from "./main.js"
+import {getProfile, updateProfile, createPost, getUserPosts, deletePost} from "./main.js"
 
 document.getElementById("editBio").onclick = function() {
     let bioForm = document.getElementById("bioFormDiv")
@@ -59,8 +59,38 @@ window.onload = async function() {
     if (userposts && userposts.length > 0) {
         let result = ""
         userposts.forEach(function(post) {
-            result += "<li>" + post.Content + "</li>"
+            result += `<li>
+                ${post.Content}
+                <button class="delete-btn" data-postid="${post.PostID}">Delete</button>
+            </li>`
         })
         document.getElementById("postList").innerHTML = result
+
+        // Add event listeners to delete buttons
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.onclick = async function() {
+                const postId = this.getAttribute('data-postid')
+                await deletePost(postId)
+                // Refresh the post list
+                const updatedPosts = await getUserPosts(localStorage.getItem("user"))
+                if (updatedPosts && updatedPosts.length > 0) {
+                    let newResult = ""
+                    updatedPosts.forEach(function(post) {
+                        newResult += `<li>
+                            ${post.Content}
+                            <button class="delete-btn" data-postid="${post.PostID}">Delete</button>
+                        </li>`
+                    })
+                    document.getElementById("postList").innerHTML = newResult
+                    
+                    // Reattach event listeners to new buttons
+                    document.querySelectorAll('.delete-btn').forEach(btn => {
+                        btn.onclick = button.onclick
+                    })
+                } else {
+                    document.getElementById("postList").innerHTML = ""
+                }
+            }
+        })
     }
 }
