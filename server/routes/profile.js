@@ -41,4 +41,14 @@ router
     }
   })
 
+  .delete("/deleteProfile/:id", async (req, res) => {
+    try {
+      const profile = await Profile.deleteProfile(req.params.id);
+      res.send(profile);
+    } catch (err) {
+      res.status(401).send({ message: err.message });
+    }
+  })
+
+
 module.exports = router;

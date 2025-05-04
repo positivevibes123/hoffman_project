@@ -31,5 +31,23 @@ router
     }
 })
 
+.put('/updatePost', async (req, res) => {
+    try {
+      const userPost = await UserPost.updatePost(req.body)
+      res.send(userPost)
+    } catch(err) {
+      res.status(401).send({message: err.message})
+    }
+})
+
+.delete('/deletePost/:id', async (req, res) => {
+    try {
+      const userPost = await UserPost.deletePost(req.params.id)
+      res.send(userPost)
+    } catch(err) {
+      res.status(401).send({message: err.message})
+    }
+})
+
 
   module.exports = router

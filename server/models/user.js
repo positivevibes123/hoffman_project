@@ -11,6 +11,21 @@ async function createTable() {
 createTable()
 
 // CRUD Operations
+
+// CREATE
+
+async function signUp(user) {
+  let cUser = await userExists(user.username)
+  if(cUser[0]) throw Error("Username already exists!")
+  let sql = `
+    INSERT INTO User (Username, Password)
+    VALUES ("${user.username}", "${user.password}")
+  `
+  return await con.query(sql)
+}
+
+// READ
+
 async function getAllUsers() {
   let sql = `SELECT * FROM User`
   return await con.query(sql)
@@ -24,16 +39,6 @@ async function login(user) {
     return cUser[0]
 }
 
-async function signUp(user) {
-  let cUser = await userExists(user.username)
-  if(cUser[0]) throw Error("Username already exists!")
-  let sql = `
-    INSERT INTO User (Username, Password)
-    VALUES ("${user.username}", "${user.password}")
-  `
-  return await con.query(sql)
-}
-
 async function userExists(username) {
   let sql = `
     SELECT * FROM User
@@ -42,6 +47,25 @@ async function userExists(username) {
   return await con.query(sql)
 }
 
-// CREATE in CRUD - Registering a user
+// UPDATE
 
-module.exports = { getAllUsers, login, signUp }
+async function updateUser(user) {
+  let sql = `
+    UPDATE User
+    SET Username="${user.username}", Password="${user.password}"
+    WHERE UserID=${user.UserID}
+  `
+  return await con.query(sql)
+}
+
+// DELETE
+
+async function deleteUser(userId) {
+  let sql = `
+    DELETE FROM User
+    WHERE UserID=${userId}
+  `
+  return await con.query(sql)
+}
+
+module.exports = { getAllUsers, updateUser, deleteUser, login, signUp }

@@ -14,19 +14,34 @@ createTable()
 
 // CRUD Operations
 
-async function getAllPosts() {
-  let sql = `SELECT * FROM UserPost`
-  return await con.query(sql)
-}
-
+// CREATE
 async function createPost(post) {
   let sql = `INSERT INTO UserPost (UserID, Content) VALUES (?, ?)`
   return await con.query(sql, [post.UserID, post.Content])
 }
 
+// UPDATE
+async function updatePost(post) {
+  let sql = `UPDATE UserPost SET Content=? WHERE PostID=?`
+  return await con.query(sql, [post.Content, post.PostID])
+}
+
+// READ
 async function getUserPosts(userId) {
   let sql = `SELECT * FROM UserPost WHERE UserID=?`
   return await con.query(sql, [userId])
 }
 
-module.exports = { getAllPosts, createPost, getUserPosts }
+async function getAllPosts() {
+  let sql = `SELECT * FROM UserPost`
+  return await con.query(sql)
+}
+
+// DELETE
+
+async function deletePost(postId) {
+  let sql = `DELETE FROM UserPost WHERE PostID=?`
+  return await con.query(sql, [postId])
+}
+
+module.exports = { getAllPosts, updatePost, deletePost, createPost, getUserPosts }

@@ -29,6 +29,24 @@ router
     } catch (err) {
       res.status(401).send({ message: err.message });
     }
-  });
+  })
+
+  .put("/updateUser", async (req, res) => {
+    try {
+      const user = await User.updateUser(req.body);
+      res.send(user);
+    } catch (err) {
+      res.status(401).send({ message: err.message });
+    }
+  })
+
+  .delete("/deleteUser/:id", async (req, res) => {
+    try {
+      const user = await User.deleteUser(req.params.id);
+      res.send(user);
+    } catch (err) {
+      res.status(401).send({ message: err.message });
+    }
+  })
 
 module.exports = router;

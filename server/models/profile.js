@@ -13,10 +13,20 @@ async function createTable() {
 createTable()
 
 // CRUD Operations
+
+// READ
+
 async function getAllProfiles() {
   let sql = `SELECT * FROM Profile`
   return await con.query(sql)
 }
+
+async function getProfile(userId) {
+	let sql = `SELECT * FROM Profile WHERE UserID=?`
+	return await con.query(sql, [userId])
+}
+
+// CREATE
 
 async function createProfile(profile) {
 	//let sql = `INSERT INTO Profile (UserID, Bio) VALUES ${profile.UserID}, ${profile.Bio})`
@@ -25,14 +35,18 @@ async function createProfile(profile) {
 	return await con.query(sql, [profile.UserID, profile.Bio]);
 }
 
-async function getProfile(userId) {
-	let sql = `SELECT * FROM Profile WHERE UserID=?`
-	return await con.query(sql, [userId])
-}
+// UPDATE
 
 async function updateProfile(profile) {
 	let sql = `UPDATE Profile SET Bio=? WHERE UserID=?`
 	return await con.query(sql, [profile.Bio, profile.UserID])
 }
 
-module.exports = { getAllProfiles, createProfile, getProfile, updateProfile }
+// DELETE
+
+async function deleteProfile(userId) {
+	let sql = `DELETE FROM Profile WHERE UserID=?`
+	return await con.query(sql, [userId])
+}
+
+module.exports = { getAllProfiles, createProfile, getProfile, deleteProfile, updateProfile }
