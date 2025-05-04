@@ -97,13 +97,12 @@ function register(event) {
 
 export async function getProfile(userId) {
     try {
-        const data = await fetchData(`/profile/${userId}`, "GET");
+        const data = await fetchData(`/profile/${userId}`, {}, "GET");
         if (!data.message) {
-            return data[0]
+            return data[0];
         }
     } catch (err) {
-        console.log(err.message)
-        throw err
+        console.log(err.message);
     }
 }
 
@@ -133,21 +132,19 @@ export function createPost(post) {
     })
 }
 
-export function getUserPosts(userid) {
-    fetchData(`/userpost/${userid}`, "GET").then((data) => {
+export async function getUserPosts(userid) {
+    try {
+        const data = await fetchData(`/userpost/${userid}`, {}, "GET");
         if (!data.message) {
-            console.log(data)
-            console.log("Posts fetched successfully")
-
+            console.log("Posts fetched successfully");
             if (data.length == 0) {
-                console.log("No posts found")
-            } else {
-                // Loop through the posts and display them
+                console.log("No posts found");
             }
+            return data;
         }
-    }).catch((err) => {
-        console.log(err.message)
-    })
+    } catch (err) {
+        console.log(err.message);
+    }
 }
 
 function stringEmpty(word) {

@@ -45,23 +45,22 @@ window.onload = async function() {
     let currentUserID = localStorage.getItem("user")
     console.log("Current user ID: " + currentUserID)
     
-    try {
-        let profile = await getProfile(currentUserID)
+    let profile = await getProfile(currentUserID)
+    console.log("Profile: ", profile)
 
+    if (profile) {
         document.getElementById("bio").innerHTML = profile.Bio
-        document.getElementById("joinDate").innerHTML = "Join Date: " + profile.JoinDate.split("T")[0];  
-    } catch (err) {
-        console.log(err.message)
+        document.getElementById("joinDate").innerHTML = "Join Date: " + profile.JoinDate.split("T")[0];
     }
 
-    let userposts = getUserPosts(localStorage.getItem("user"))
-    console.log("User post list: " + userposts)
-    /*let result = ""
-
-    userposts.forEach(function(post) {
-        result += "<li>" + post.Content + "</li>"
-    })
-
-
-    document.getElementById("postList").innerHTML = result*/
+    let userposts = await getUserPosts(localStorage.getItem("user"))
+    console.log("User post list: ", userposts)
+    
+    if (userposts && userposts.length > 0) {
+        let result = ""
+        userposts.forEach(function(post) {
+            result += "<li>" + post.Content + "</li>"
+        })
+        document.getElementById("postList").innerHTML = result
+    }
 }
