@@ -37,6 +37,10 @@ document.getElementById("postForm").onsubmit = function(event) {
     console.log("Post submitted")
 }
 
+document.getElementById("register").onclick = function() { 
+    localStorage.removeItem("user")
+}
+
 window.onload = async function() {
     let currentUserID = localStorage.getItem("user")
     console.log("Current user ID: " + currentUserID)
@@ -50,5 +54,14 @@ window.onload = async function() {
         console.log(err.message)
     }
 
-    getUserPosts(localStorage.getItem("user"))
+    let userposts = getUserPosts(localStorage.getItem("user"))
+    console.log("User post list: " + userposts)
+    /*let result = ""
+
+    userposts.forEach(function(post) {
+        result += "<li>" + post.Content + "</li>"
+    })
+
+
+    document.getElementById("postList").innerHTML = result*/
 }

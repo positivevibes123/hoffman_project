@@ -42,7 +42,7 @@ function login(event) {
     fetchData("/user/login", user, "POST")
     .then((data) => {
         if (!data.message) {
-            setCurrentUser(data.insertId)
+            setCurrentUser(data.UserID)
             window.location.href = "index.html"
         }
     })
@@ -97,7 +97,7 @@ function register(event) {
 
 export async function getProfile(userId) {
     try {
-        const data = await fetchData(`/profile/getProfile?userId=${userId}`, "GET");
+        const data = await fetchData(`/profile/${userId}`, "GET");
         if (!data.message) {
             return data[0]
         }
@@ -155,5 +155,5 @@ function stringEmpty(word) {
 }
 
 function setCurrentUser(user) {
-    localStorage.setItem("user", JSON.stringify(user))
+    localStorage.setItem("user", user)
 }
